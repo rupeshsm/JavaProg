@@ -1,33 +1,70 @@
 class StudentInfo{
 
-  int rollnum;
-  float marks;
 
-   void setData(int rollnum, float marks){
+static int tot;
+  int rollnum;
+  static {
+    System.out.println("This will run first");
+
+  }
+  float marks;
+  char grade;
+  String name;
+
+
+
+   void setData(String name, int rollnum, float marks){
+
     this.rollnum=rollnum;
     this.marks=marks;
+    this.name = name;
 
 
   }
-   void getData(){
+  StudentInfo(){
 
-    System.out.println("My Roll No: "+rollnum);
-    System.out.println("My Marks: "+marks);
+    System.out.println("New Student Created");
+    tot++;
+  }
+
+  static int checkTot(){
+    return tot;
+  }
+
+  char calGrade(){
+    grade = (marks>50.0f)?'P':'F';
+    return grade;
+  }
+   void getData(){
+    System.out.println("Name: "+name);
+    System.out.println("Roll No: "+rollnum);
+    System.out.println("Marks: "+marks);
+    System.out.println("total: "+tot);
+    //System.out.println("My Marks: "+grade);
   }
 
 }
 
 class Student{
 public static void main(String[] args) {
+  StudentInfo.tot = 50;
+  System.out.println("Total Students: "+StudentInfo.checkTot());
+  StudentInfo s1 = new StudentInfo();
+  //si.setData();
+  s1.getData();
 
-  StudentInfo si = new StudentInfo();
-  si.setData(12,85.0f);
-  si.getData();
 
-  si.Marks=35.6f;
 
-  System.out.println("My New Roll No from main : "+si.marks);
-  si.getData();
+  char grade = s1.calGrade();
+  System.out.println("Grade after: "+grade);
+  System.out.println("Total Students: "+s1.checkTot());
+  int i = s1.checkTot();
+  StudentInfo s2 = new StudentInfo();
+  System.out.println("Total Students: "+s1.checkTot());
+  //
+  System.out.println("Total Students: "+s1.checkTot());
+  //System.out.println("My New Roll No from main : "+si.marks);
+  //si.getData();
 }
 
 }
